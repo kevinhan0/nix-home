@@ -22,6 +22,18 @@ in
     wget
   ];
 
+  programs.zsh = {
+    enable = true;
+    enableCompletion = true;
+    enableAutosuggestions = true;
+    history = {
+      path = "~/.zsh_history";
+      size = 50000;
+      save = 50000;
+    };
+    shellAliases = import ./aliases.nix;
+  };
+
   programs.tmux = {
     enable = true;
     # disableConfirmationPrompt = true;
