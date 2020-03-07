@@ -19,7 +19,7 @@
 
   # Bash
   ls = "exa";
-  ll = "exa -l";
+  ll = "exa -alF";
 
   # Modules
   t = "tmux";
