@@ -21,7 +21,8 @@
   set guicursor=n-v-c-sm:ver25-blinkon0,i-ci-ve:ver25,r-cr-o:hor20
 
   " colorscheme
-  " colorscheme onedark
+  packadd! onedark
+  colorscheme onedark
 
   " indentLine
   let g:indentLine_first_char = '┊'

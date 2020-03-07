@@ -16,12 +16,16 @@ in
     cmake
     curl
     #gcc
+    git
     htop
     jq
     neofetch
     nix-prefetch-git
+    starship
+    tmux
     tree
     wget
+    zsh
   ];
 
   programs.starship = {
@@ -68,7 +72,7 @@ in
     };
     initExtra = ''
       ${sourceFile NIX_PATH}
-      zsh
+      neofetch
     '';
   };
 
