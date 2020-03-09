@@ -2,16 +2,17 @@
   set number
   set nowrap
   set hidden
+  set ttyfast
   set mouse=a
   set nobackup
   syntax enable
   set expandtab
   set tabstop=4
   set noswapfile
+  set lazyredraw
   set noshowmode
   set cursorline
   set shiftwidth=4
-  set cursorcolumn
   set termguicolors
   set softtabstop=4
   set nowritebackup
@@ -119,6 +120,6 @@
   autocmd Filetype ipynb nmap <silent><Leader>j :VimpyterStartJupyter<CR>
 
   " vimwiki
-  let g:vimwiki_list = [{'path': '~/Projects/vimwiki/',
+  let g:vimwiki_list = [{'path': '~/Dropbox/Projects/vimwiki/',
                         \'syntax': 'markdown', 'ext': '.md'}]
 ''
