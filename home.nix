@@ -15,18 +15,28 @@ in
     bat
     cmake
     curl
-    #gcc
+    docker
+    gcc
     git
     htop
     jq
+    kubectl
+    #lua.pkgs.luv.libluv
     neofetch
     nix-prefetch-git
+    pandoc
+    texlive.combined.scheme-full
     starship
     tmux
     tree
+    #vim
     wget
     zsh
   ];
+
+  #programs.neovim = {
+  #  enable = true;
+  #};
 
   programs.starship = {
     enable = true;
@@ -76,7 +86,6 @@ in
     '';
   };
 
-
   programs.tmux = {
     enable = true;
     # disableConfirmationPrompt = true;
@@ -86,10 +95,10 @@ in
     terminal = "screen-256color";
   };
 
-  nixpkgs.config.vim.gui = gui;
-
-  programs.vim = {
+  programs.neovim = {
     enable = true;
+    withPython3 = true;
+    extraPython3Packages = (ps: with ps; [ black notedown ]);
     extraConfig = import ./vim.nix;
     plugins = let
       colours = pkgs.vimUtils.buildVimPlugin {
@@ -108,15 +117,6 @@ in
           repo = "tex-conceal.vim";
           rev = "801af0d86035556f5d39aedd56d4206deed683e0";
           sha256 = "0j7gfcgxdnw1p5n5nafxq8a5yj7y604jslw923xjzy6lqd6riwcl";
-        };
-      };
-      vim-xmark = pkgs.vimUtils.buildVimPlugin {
-        name = "vim-xmark";
-        src = pkgs.fetchFromGitHub {
-          owner = "junegunn";
-          repo = "vim-xmark";
-          rev = "7e27f6fce7a249f0a4820fbc943191bbb7a1af10";
-          sha256 = "1l25xvmz32vvnjn0hcvgaqr938pcqdmp1w9z1a8hnj6xabhymy4v";
         };
       };
       vim-nerdtree-syntax-highlight = pkgs.vimUtils.buildVimPlugin {
@@ -156,7 +156,6 @@ in
       # Markdown
       vimwiki
       vim-markdown
-      vim-xmark
       tabular
 
       # Airline
@@ -195,5 +194,5 @@ in
       # Themes
       colours
     ];
-  };
+  }
 }
