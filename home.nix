@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, lib, pkgs, ... }:
 
 let
   NIX_PATH = "~/.nix-profile/etc/profile.d/nix.sh";
@@ -13,30 +13,65 @@ in
   home.packages = with pkgs; [
     exa
     bat
-    cmake
     curl
     docker
     gcc
     git
+    #google-chrome
     htop
     jq
     kubectl
-    #lua.pkgs.luv.libluv
     neofetch
     nix-prefetch-git
+    openvpn
     pandoc
-    texlive.combined.scheme-full
-    starship
-    tmux
+    polybar
+    #texlive.combined.scheme-basic
     tree
-    #vim
     wget
-    zsh
   ];
 
-  #programs.neovim = {
+  #services.polybar = {
   #  enable = true;
+  #  script = "polybar bar &";
+  #  config = {
+  #    "bar/top" = {
+  #      monitor = "\${env:MONITOR:eDP1}";
+  #      width = "100%";
+  #      height = "3%";
+  #      radius = 0;
+  #      modules-center = "date";
+  #    };
+  #    "module/date" = {
+  #      type = "internal/date";
+  #      internal = 5;
+  #      date = "%d.%m.%y";
+  #      time = "%H:%M";
+  #      label = "%time%  %date%";
+  #    };
+  #  };
   #};
+
+  programs.git = {
+    enable = true;
+    userName = "kevinhan0";
+    userEmail = "yxh204@nyu.edu";
+  };
+
+  xsession.enable = true;
+  xsession.windowManager.i3 = {
+    enable = true;
+    config = 
+      let
+        modifier = "Mod4";
+      in 
+      {
+        keybindings = lib.mkOptionDefault {
+          "${modifier}+Return" = "exec i3-sensible-terminal";
+        };
+        inherit modifier;  
+      };
+    };
 
   programs.starship = {
     enable = true;
@@ -76,7 +111,7 @@ in
       }
     ];
     sessionVariables = rec {
-      EDITOR = "vim";
+      EDITOR = "nvim";
       VISUAL = EDITOR;
       GIT_EDITOR = EDITOR;
     };
@@ -98,7 +133,7 @@ in
   programs.neovim = {
     enable = true;
     withPython3 = true;
-    extraPython3Packages = (ps: with ps; [ black notedown ]);
+    extraPython3Packages = (ps: with ps; [ black ]);
     extraConfig = import ./vim.nix;
     plugins = let
       colours = pkgs.vimUtils.buildVimPlugin {
@@ -194,5 +229,5 @@ in
       # Themes
       colours
     ];
-  }
+  };
 }
