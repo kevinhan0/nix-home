@@ -23,5 +23,5 @@
 
   # Modules
   t = "tmux";
-  v = "vim";
+  v = "nvim";
 }
