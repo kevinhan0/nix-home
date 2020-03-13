@@ -68,9 +68,20 @@ in
       {
         keybindings = lib.mkOptionDefault {
           "${modifier}+Return" = "exec i3-sensible-terminal";
+          "${modifier}+k" = "focus up";
+          "${modifier}+j" = "focus down";
+          "${modifier}+h" = "focus left";
+          "${modifier}+l" = "focus right";
+          "${modifier}+Shift+k" = "move up";
+          "${modifier}+Shift+j" = "move down";
+          "${modifier}+Shift+h" = "move left";
+          "${modifier}+Shift+l" = "move right";
         };
         inherit modifier;  
       };
+      extraConfig = ''
+        for_window [class=".*"] border pixel 0
+      '';
     };
 
   programs.starship = {
