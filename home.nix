@@ -3,7 +3,6 @@
 let
   NIX_PATH = "~/.nix-profile/etc/profile.d/nix.sh";
   sourceFile = file: "[ -f ${file} ] && source ${file}";
-  gui = if pkgs.stdenv.isDarwin then "darwin" else "gtk3";
 in
 {
   programs.home-manager.enable = true;
@@ -15,10 +14,14 @@ in
     bat
     curl
     docker
-    gcc
+    feh
+    fira
+    fira-code
     git
-    #google-chrome
+    google-chrome
+    gtk3
     htop
+    i3lock-fancy
     jq
     kubectl
     neofetch
@@ -29,28 +32,58 @@ in
     #texlive.combined.scheme-basic
     tree
     wget
+    xorg.xbacklight
   ];
 
-  #services.polybar = {
-  #  enable = true;
-  #  script = "polybar bar &";
-  #  config = {
-  #    "bar/top" = {
-  #      monitor = "\${env:MONITOR:eDP1}";
-  #      width = "100%";
-  #      height = "3%";
-  #      radius = 0;
-  #      modules-center = "date";
-  #    };
-  #    "module/date" = {
-  #      type = "internal/date";
-  #      internal = 5;
-  #      date = "%d.%m.%y";
-  #      time = "%H:%M";
-  #      label = "%time%  %date%";
-  #    };
-  #  };
-  #};
+  fonts.fontconfig.enable = true;
+
+  programs.termite = {
+    enable = true;
+    font = "fira 10";
+  };
+  
+  services.polybar = {
+    enable = true;
+    package = pkgs.polybar.override {
+      #i3GapsSupport = true;
+    };
+      config = {
+        "bar/top" = {
+          width = "100%:-20";
+          height = 25;
+          offset-x = 10;
+          offset-y = 4;
+          tray-position = "right";
+          modules-right = "date battery";
+          modules-left = "i3";
+          module-margin = 1;
+          font-0 = "Source Han Code JP:weight=bold:size=10;3";
+          background = "#282828";
+          foreground = "#fbf1c7";
+          fixed-center = true;
+          border-size = 4;
+          border-color = "#689d6a";
+        };
+        "module/date" = {
+          type = "internal/date";
+          interval = 30;
+          date = "%Y-%m-%d";
+          time = "%H:%M";
+          label = "%date% %time%";
+        };
+        "module/battery" = {
+          type = "internal/battery";
+          full-at = 98;
+          label-charging = "! %percentage%%";
+        };
+        "module/i3" = {
+          type = "internal/i3";
+          enable-click = true;
+          ws-icon-0 = "1;♚";
+        };
+      };
+      script = "polybar top &";
+  };
 
   programs.git = {
     enable = true;
@@ -61,6 +94,7 @@ in
   xsession.enable = true;
   xsession.windowManager.i3 = {
     enable = true;
+    package = pkgs.i3-gaps;
     config = 
       let
         modifier = "Mod4";
@@ -76,11 +110,27 @@ in
           "${modifier}+Shift+j" = "move down";
           "${modifier}+Shift+h" = "move left";
           "${modifier}+Shift+l" = "move right";
-        };
+          "${modifier}+e" = "exec firefox";
+          #"${modifier}+q" = "exec i3lock-fancy";
+          #"${modifier}+Shift+Return" = "exec i3-dmenu-desktop";
+          "XF86MonBrightnessUp" = "exec xbacklight -inc 10";
+          "XF86MonBrightnessDown" = "exec xbacklight -dec 10";
+        }; 
         inherit modifier;  
+        bars = [
+          {
+            mode = "hide";
+            #position = "top";
+            #statusCommand = "${pkgs.i3status-rust}/bin/i3status-rs ${./i3status-rust.toml}";
+          }
+        ];
       };
       extraConfig = ''
         for_window [class=".*"] border pixel 0
+        smart_gaps on
+        gaps inner 10
+        gaps outer 5
+        exec_always --no-startup-id $HOME/Projects/nix-home/launch.sh
       '';
     };
 
@@ -134,10 +184,7 @@ in
 
   programs.tmux = {
     enable = true;
-    # disableConfirmationPrompt = true;
     extraConfig = import ./tmux.nix;
-    # keyMode = "vi";
-    # shortcut = "t";
     terminal = "screen-256color";
   };
 
