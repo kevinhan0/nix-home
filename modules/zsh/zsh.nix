@@ -5,6 +5,13 @@ let
   sourceFile = file: "[ -f ${file} ] && source ${file}";
 in
 {
+  programs.starship = {
+    enable = true;
+    enableZshIntegration = true;
+    enableBashIntegration = false;
+    enableFishIntegration = false;
+  };
+
   programs.zsh = {
     enable = true;
     enableCompletion = true;
