@@ -1,84 +1,69 @@
 { config, lib, pkgs, ... }:
 
 {
+  fonts.fontconfig.enable = true;
+
   imports = [
     ./modules/neovim/neovim.nix
     ./modules/zsh/zsh.nix
     ./modules/i3/i3.nix
     ./modules/alacritty/alacritty.nix
     ./modules/tmux/tmux.nix
+    ./modules/rofi/rofi.nix
+    ./modules/polybar/polybar.nix
   ];
 
   programs.home-manager.enable = true;
+
+  gtk = {
+    enable=true;
+    font = {
+      name = "Meslo LG S for Powerline";
+      package = pkgs.meslo-lg;
+    };
+    theme = {
+      name = "Arc-Dark";
+      package = pkgs.arc-theme;
+    };
+    iconTheme = {
+      name = "Paper";
+      package = pkgs.paper-icon-theme;
+    };
+  };
 
   home.stateVersion = "19.09";
 
   home.packages = with pkgs; [
     exa
     bat
+    conky
     curl
     docker
     feh
+    fontconfig
     git
     google-chrome
     htop
-    i3lock-fancy
     jq
     kubectl
     neofetch
     nix-prefetch-git
     openvpn
     pandoc
-    #texlive.combined.scheme-basic
+    meslo-lg
+    powerline-fonts
+    #texlive.combined.scheme-medium
     tree
     wget
-    #xorg.xbacklight
+    xorg.xbacklight
+    (callPackage ./modules/wps_office.nix { })
   ];
+ 
+  services = {
+    compton = import ./modules/compton/compton.nix {};
+  };
 
-  #fonts.fontconfig.enable = true;
-
-  #services.polybar = {
-  #  enable = true;
-  #  package = pkgs.polybar.override {
-  #    #i3GapsSupport = true;
-  #  };
-  #    config = {
-  #      "bar/top" = {
-  #        width = "100%:-20";
-  #        height = 25;
-  #        offset-x = 10;
-  #        offset-y = 4;
-  #        tray-position = "right";
-  #        modules-right = "date battery";
-  #        modules-left = "i3";
-  #        module-margin = 1;
-  #        font-0 = "Source Han Code JP:weight=bold:size=10;3";
-  #        background = "#282828";
-  #        foreground = "#fbf1c7";
-  #        fixed-center = true;
-  #        border-size = 4;
-  #        border-color = "#689d6a";
-  #      };
-  #      "module/date" = {
-  #        type = "internal/date";
-  #        interval = 30;
-  #        date = "%Y-%m-%d";
-  #        time = "%H:%M";
-  #        label = "%date% %time%";
-  #      };
-  #      "module/battery" = {
-  #        type = "internal/battery";
-  #        full-at = 98;
-  #        label-charging = "! %percentage%%";
-  #      };
-  #      "module/i3" = {
-  #        type = "internal/i3";
-  #        enable-click = true;
-  #        ws-icon-0 = "1;♚";
-  #      };
-  #    };
-  #    script = "polybar top &";
-  #};
+  xsession.enable = true;
 
   programs.git = {
     enable = true;

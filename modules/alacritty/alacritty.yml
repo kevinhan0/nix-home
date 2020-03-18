@@ -30,5 +30,11 @@ colors:
     white:   '#ffffff'
 
 font:
-    family: Meslo LG S for Powerline
-    size: 10.0
+  family: Droid Sans Mono for Powerline
+  size: 8
+  style: Regular
+ 
+shell:
+  program: /home/kevinhan0/.nix-profile/bin/zsh
+
+background_opacity: 0.7
