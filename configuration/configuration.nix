@@ -76,7 +76,6 @@
      home = "/home/kevinhan0/";
      description = "Kevin Han";
      extraGroups = [ "wheel" "sudo" ]; # Enable ‘sudo’ for the user.
-     password = "136bdod6";
   };
 
   # Nix
