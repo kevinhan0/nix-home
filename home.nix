@@ -11,6 +11,7 @@
     ./modules/tmux/tmux.nix
     ./modules/rofi/rofi.nix
     ./modules/polybar/polybar.nix
+    ./modules/termite/termite.nix
   ];
 
   programs.home-manager.enable = true;
@@ -34,11 +35,11 @@
   home.stateVersion = "19.09";
 
   home.packages = with pkgs; [
-    exa
     bat
     conky
     curl
     docker
+    exa
     feh
     fontconfig
     git
@@ -50,9 +51,7 @@
     nix-prefetch-git
     openvpn
     pandoc
-    meslo-lg
-    powerline-fonts
-    #texlive.combined.scheme-medium
+    texlive.combined.scheme-medium
     tree
     wget
     xorg.xbacklight

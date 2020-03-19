@@ -8,7 +8,7 @@
       modifier = "Mod4";
       bars = [];
       keybindings = lib.mkOptionDefault {
-        "${modifier}+Return" = "exec alacritty";
+        "${modifier}+Return" = "exec termite -e $(which zsh)";
         "${modifier}+k" = "focus up";
         "${modifier}+j" = "focus down";
         "${modifier}+h" = "focus left";
