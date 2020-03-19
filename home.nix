@@ -7,7 +7,6 @@
     ./modules/neovim/neovim.nix
     ./modules/zsh/zsh.nix
     ./modules/i3/i3.nix
-    ./modules/alacritty/alacritty.nix
     ./modules/tmux/tmux.nix
     ./modules/rofi/rofi.nix
     ./modules/polybar/polybar.nix
@@ -51,11 +50,14 @@
     nix-prefetch-git
     openvpn
     pandoc
+    powerline-fonts
     texlive.combined.scheme-medium
     tree
+    unzip
     wget
     xorg.xbacklight
     (callPackage ./modules/wps_office.nix { })
+    (callPackage ./modules/fira-code/fira-code.nix { })
   ];
  
   services = {

@@ -3,7 +3,7 @@
 {
   programs.termite = {
     enable = true;
-    font = "Fira Mono for Powerline 10";
+    font = "FiraCode Nerd Font 10";
     cursorShape = "ibeam";
     backgroundColor = "#282c34";
     foregroundColor = "#abb2bf";

@@ -6,21 +6,21 @@
   
   blur = true;
   blurExclude = [ "window_type = 'dock'" "window_type = 'desktop'" ];
-  
+
   fade = true;
   fadeDelta = 5;
-  
+
   shadow = true;
   shadowOffsets = [ (-7) (-7) ];
   shadowOpacity = "0.7";
   shadowExclude = [ "window_type *= 'normal' && ! name ~= ''" ];
   noDockShadow = true;
   noDNDShadow = true;
-  
-  activeOpacity = "1.0";
-  inactiveOpacity = "0.8";
+
+  activeOpacity = "0.8";
+  inactiveOpacity = "0.6";
   menuOpacity = "0.8";
-  
+
   backend = "glx";
   vSync = "opengl";
   
