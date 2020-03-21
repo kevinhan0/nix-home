@@ -1,29 +1,45 @@
 { pkgs, ... }:
 
 let
-  ac = "#1E88E5";
-  mf = "#383838";  
-
-  bg = "${xrdb:background}";
+  bg = "#1F1F1F";
   fg = "#FFFFFF";
-
-  # Colored
-  primary = "#ffb973";
-
-  # Dark
-  secondary = "#140e0a";
-
-  # Colored (light)
-  tertiary = "#74c2d4";
-
-  # white
-  quaternary = "#ecf0f1";
-
-  # middle gray
-  quinternary = "#384245";
-
-  # Red
+  acolor = "#FFFFFF";
+  curgent = "#EF5350";
+  coccupied = "#42A5F5";
   urgency = "#e74c3c";
+
+  # Shades
+  shade1 = "#0D47A1";
+  shade2 = "#1565C0";
+  shade3 = "#1976D2";
+  shade4 = "#1E88E5";
+  shade5 = "#2196F3";
+  shade6 = "#42A5F5";
+  shade7 = "#64B5F6";
+  shade8 = "#90CAF9";
+  ashade8 = "#2C2C2C";
+
+  # Material Colors
+  red = "#e53935";
+  pink = "#d81b60";
+  purple = "#8e24aa";
+  deep-purple = "#5e35b1";
+  indigo = "#3949ab";
+  blue = "#1e88e5";
+  light-blue = "#039be5";
+  cyan = "#00acc1";
+  teal = "#00897b";
+  green = "#43a047";
+  light-green = "#7cb342";
+  lime = "#c0ca33";
+  yellow = "#fdd835";
+  amber = "#ffb300";
+  orange = "#fb8c00";
+  deep-orange = "#f4511e";
+  brown = "#6d4c41";
+  grey = "#757575";
+  blue-gray = "#546e7a";
+
 in
   {
     services.polybar = { 
@@ -43,80 +59,93 @@ in
         };
 
         "bar/top" = {
-          bottom = false;
-          fixed-center = true;
+          # Position
           width = "100%";
-          height = 19;
-          offset-x = "1%";
-          scroll-up = "i3wm-wsnext";
-          scroll-down = "i3wm-wsprev";
-          #background = bg;
-          #foreground = fg;
-          radius = 0;
+          height = 32;
+          offset-x = "2%";
+          offset-y = "2%";
+          bottom = false;
+          fixed-center = false;
+
+          # UI
+          background = bg;
+          foreground = fg;
           font-0 = "FiraCode Nerd Font:size=10;3";
           font-1 = "FiraCode Nerd Font:style=Bold:size=10;3";
+
+          # Modules
           modules-left = "i3";
-          modules-right = "date network battery audio powermenu";
+          modules-right = "audio battery network calendar clock powermenu";
+
+          # Settings
           locale = "en_US.UTF-8";
+          scroll-up = "i3wm-wsnext";
+          scroll-down = "i3wm-wsprev";
         };
 
         "bar/bottom" = {
-          bottom = true;
-          fixed-center = true;          
+          # Position
           width = "100%";
           height = 19;
-          offset-x = "1%";
-          #background = bg;
-          #foreground = fg;
+          offset-x = "2%";
+          offset-y = "2%";
+          bottom = true;
+          fixed-center = false;          
+
+          # UI
+          background = bg;
+          foreground = fg;
+          font-0 = "FiraCode Nerd Font:size=10;3";
+          font-1 = "FiraCode Nerd Font:style=Bold:size=10;3";
+
+          # Misc.
           radius-top = 0;        
           tray-position = "left";
           tray-detached = false;
           tray-maxsize = 15;
-          tray-background = primary;
+          #tray-background = primary;
           tray-offset-x = -19;
           tray-offset-y = 0;
           tray-padding = 5;
           tray-scale = 1;
           padding = 0;
-          font-0 = "FiraCode Nerd Font:size=10;3";
-          font-1 = "FiraCode Nerd Font:style=Bold:size=10;3";
           #modules-left = "powermenu ddlS";
+
+          # Modules
           modules-right = "cpu memory temperature";
+
+          # Setting
           locale = "en_US.UTF-8";
         };
 
-        #"settings" = {
-        #  throttle-output = 5;
-        #  throttle-output-for = 10;
-        #  throttle-input-for = 30;
-        #  
-        #  screenchange-reload = true;
-
-        #  compositing-background = "source";
-        #  compositing-foreground = "over";
-        #  compositing-overline = "over";
-        #  comppositing-underline = "over";
-        #  compositing-border = "over";
-        #  
-        #  pseudo-transparency = "false";
-        #};
+        "settings" = {
+          throttle-output = 5;
+          throttle-output-for = 10;
+          throttle-input-for = 30;
+          screenchange-reload = true;
+          compositing-background = "source";
+          compositing-foreground = "over";
+          compositing-overline = "over";
+          comppositing-underline = "over";
+          compositing-border = "over";
+          pseudo-transparency = "false";
+        };
 
         "module/audio" = {
-          type = "internal/alsa";  
-          #format-volume = "墳 VOL <label-volume>";
-          format-volume = "<ramp-volume> <label-volume>";
-          format-volume-padding = 1;
-          #format-volume-foreground = secondary;
-          #format-volume-background = tertiary;
+          type = "internal/alsa";
+
+          # Volume
           label-volume = "%percentage%%";
-          #format-muted = "<label-muted>";
-          format-muted-padding = 1;
-          #format-muted-foreground = secondary;
-          #format-muted-background = tertiary;
-          format-muted-prefix = "婢 ";
-          format-muted-prefix-foreground = urgency;
-          #format-muted-overline = bg; 
-          #label-muted = "VOL Muted";
+          format-volume = "<ramp-volume> <label-volume>";
+          format-volume-padding = 2;
+          format-volume-background = shade6;
+
+          # Muted
+          label-muted = "婢";
+          label-muted-padding = 2;
+          label-muted-background = shade6;
+
+          # Ramp
           ramp-volume-0 = "";
           ramp-volume-1 = "";
           ramp-volume-2 = "";
@@ -128,22 +157,24 @@ in
 
         "module/battery" = {
           type = "internal/battery";
-          full-at = 101; # to disable it
-          battery = "BAT0"; # TODO: Better way to fill this
+          full-at = 101;
+          battery = "BAT0";
           adapter = "AC0";
+          bar-capacity-width = 10;
 
-          poll-interval = 2;
-          
+          # Full
           label-full = "  100%";
-          format-full-padding = 1;
-          #format-full-foreground = secondary;
-          #format-full-background = primary;
+          format-full = "<label-full>";
+          format-full-padding = 2;
+          format-full-background = shade5;
 
-          format-charging = " <animation-charging> <label-charging>";
-          format-charging-padding = 1;
-          #format-charging-foreground = secondary;
-          #format-charging-background = primary;
+          # Charging
           label-charging = "%percentage%%";
+          format-charging = " <animation-charging> <label-charging>";
+          format-charging-padding = 2;
+          format-charging-background = shade5;
+
+          # Charging animation
           animation-charging-0 = " ";
           animation-charging-1 = " ";
           animation-charging-2 = " ";
@@ -151,20 +182,22 @@ in
           animation-charging-4 = " ";
           animation-charging-framerate = 500;
 
-          format-discharging = "<ramp-capacity> <label-discharging>";
-          format-discharging-padding = 1;
-          #format-discharging-foreground = secondary;
-          #format-discharging-background = primary;
+          # Discharging
           label-discharging = "%percentage%%";
+          format-discharging = "<ramp-capacity> <label-discharging>";
+          format-discharging-padding = 2;
+          format-discharging-background = shade5;
+
+          # Ramp
           ramp-capacity-0 = " ";
-          ramp-capacity-0-foreground = urgency;
           ramp-capacity-1 = " ";
-          ramp-capacity-1-foreground = urgency;
           ramp-capacity-2 = " ";
           ramp-capacity-3 = " ";
           ramp-capacity-4 = " ";
+          ramp-capacity-0-foreground = red;
+          ramp-capacity-1-foreground = red;
         };
-        
+
         "module/cpu" = {
           type = "internal/cpu";
           interval = "0.5";
@@ -182,30 +215,42 @@ in
           ramp-coreload-5 = "▆";
           ramp-coreload-6 = "▇";
           ramp-coreload-7 = "█";
-
         };
-        
-        "module/date" = {
+
+        "module/calendar" = {
           type = "internal/date"; 
-          interval = "1.0"; 
-          time = " %H:%M";
-          time-alt = " %H:%M:%S";
+          interval = "1.0";
+
+          # Date
           date = " %a, %m/%d";
           date-alt = " %A, %m/%d/%Y"; 
+
+          # UI
           format = "<label>";
-          format-padding = 1;
-          #format-foreground = fg; 
-          label = "%date% %time% ";
+          label = "%date%";
+          label-padding = 2;
+          label-background = shade4;
+        };
+
+        "module/clock" = {
+          type = "internal/date"; 
+          interval = "1.0";
+
+          # Time
+          time = " %I:%M %p";
+          time-alt = " %H:%M:%S";
+
+          # UI
+          format = "<label>";
+          label = "%time%";
+          label-padding = 2;
+          label-background = shade3;
         };
 
         "module/i3" = {
           type = "internal/i3";
-          pin-workspaces = false;
-          strip-wsnumbers = true;
-          enable-click = true;
-          format = "<label-state> <label-mode>";
-          #format-background = tertiary;
 
+          # Icons
           ws-icon-0 = "1;";
           ws-icon-1 = "2;";
           ws-icon-2 = "3;";
@@ -216,34 +261,38 @@ in
           ws-icon-7 = "8;";
           ws-icon-8 = "9;";
 
+          format = "<label-state> <label-mode>";
+          format-background = shade2;
           label-mode = "%mode%";
           label-mode-padding = 1;
 
-          label-unfocused = "%icon%";
-          #label-unfocused-foreground = quinternary;
-          label-unfocused-padding = 1;
-
-          label-focused = "%icon%";
-          label-focused-font = 2;
-          #label-focused-foreground = secondary;
+          # Focused
+          label-focused = "%index%";
           label-focused-padding = 1;
+          label-focused-foreground = acolor;
 
-          label-visible = "%icon%";
+          # Unfocused
+          label-unfocused = "%index%";
+          label-unfocused-padding = 1;
+          label-unfocused-foreground = fg;
+
+          # Visible
+          label-visible = "%index%";
           label-visible-padding = 1;
-          
+          label-visible-foreground = coccupied;
+
+          # Urgent
           label-urgent = "%index%";
-          #label-urgent-foreground = urgency;
           label-urgent-padding = 1;
-          #label-separator = "";
+          label-urgent-foreground = curgent;
+
+          # Settings
+          enable-click = true;
+          enable-scroll = false;
+          pin-workspaces = false;
+          strip-wsnumbers = true;
         };
 
-        "module/title" = {
-          type = "internal/xwindow";
-          format = "<label>";
-          label = "%title%";
-          label-maxlen = 70;
-        };
-        
         "module/memory" = {
           type = "internal/memory"; 
           interval = 3;
@@ -253,7 +302,7 @@ in
           #format-foreground = secondary;
           #format-padding = 1; 
         };
-        
+
         #"module/network" = {
         #  type = "internal/network";
         #  interface = "enp3s0";
@@ -312,16 +361,21 @@ in
 
         "module/powermenu" = {
           type = "custom/menu";
+
+          # UI
           format = "<label-toggle> <menu>";
-          #format-background = secondary;
-          #format-padding = 1;
+          format-background = shade2;
+          format-foreground = fg;
+          format-padding = 2;
+
+          # Menu
           label-open = "  ";
           label-close = "";
           menu-0-0 = "  ";
-          menu-0-0-exec = "systemctl suspend";
           menu-0-1 = "  ";
-          menu-0-1-exec = "systemctl reboot";
           menu-0-2 = "  ";
+          menu-0-0-exec = "systemctl suspend";
+          menu-0-1-exec = "systemctl reboot";
           menu-0-2-exec = "systemctl poweroff";
         };
 
