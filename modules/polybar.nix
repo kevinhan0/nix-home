@@ -19,6 +19,17 @@ let
   shade8 = "#90CAF9";
   ashade8 = "#2C2C2C";
 
+  # 50 Shades of Gray
+  gray_shade1 = "#212121";
+  gray_shade2 = "#424242";
+  gray_shade3 = "#616161";
+  gray_shade4 = "#757575";
+  gray_shade5 = "#9E9E9E";
+  gray_shade6 = "#BDBDBD";
+  gray_shade7 = "#D4D4D4";
+  gray_shade8 = "#EEEEEE";
+  gray_ashade8 = "#2C2C2C";
+
   # Material Colors
   red = "#e53935";
   pink = "#d81b60";
@@ -50,7 +61,7 @@ in
         alsaSupport = true;
       };
 
-      script = "polybar -q -r top & polybar -q -r bottom &";
+      script = "polybar -q -r top &";
 
       config = {
         "global/wm" = {
@@ -75,7 +86,7 @@ in
 
           # Modules
           modules-left = "i3";
-          modules-right = "audio battery network calendar clock powermenu";
+          modules-right = "mpd network audio battery calendar clock powermenu";
 
           # Settings
           locale = "en_US.UTF-8";
@@ -90,29 +101,15 @@ in
           offset-x = "2%";
           offset-y = "2%";
           bottom = true;
-          fixed-center = false;          
+          fixed-center = true;          
 
           # UI
-          background = bg;
           foreground = fg;
           font-0 = "FiraCode Nerd Font:size=10;3";
           font-1 = "FiraCode Nerd Font:style=Bold:size=10;3";
 
-          # Misc.
-          radius-top = 0;        
-          tray-position = "left";
-          tray-detached = false;
-          tray-maxsize = 15;
-          #tray-background = primary;
-          tray-offset-x = -19;
-          tray-offset-y = 0;
-          tray-padding = 5;
-          tray-scale = 1;
-          padding = 0;
-          #modules-left = "powermenu ddlS";
-
           # Modules
-          modules-right = "cpu memory temperature";
+          modules-right = "cpu_ramp cpu memory temperature";
 
           # Setting
           locale = "en_US.UTF-8";
@@ -129,6 +126,82 @@ in
           comppositing-underline = "over";
           compositing-border = "over";
           pseudo-transparency = "false";
+        };
+
+        "module/i3" = {
+          type = "internal/i3";
+
+          # Icons
+          ws-icon-0 = "1;";
+          ws-icon-1 = "2;";
+          ws-icon-2 = "3;";
+          ws-icon-3 = "4;";
+          ws-icon-4 = "5;";
+          ws-icon-5 = "6;";
+          ws-icon-6 = "7;";
+          ws-icon-7 = "8;";
+          ws-icon-8 = "9;";
+
+          format = "<label-state> <label-mode>";
+          #format-background = shade2;
+          label-mode = "%mode%";
+          label-mode-padding = 2;
+
+          # Focused
+          label-focused = "%index%";
+          label-focused-padding = 2;
+          label-focused-background = shade1;
+
+          # Unfocused
+          label-unfocused = "%index%";
+          label-unfocused-padding = 2;
+          label-unfocused-background = shade2;
+
+          # Urgent
+          label-urgent = "%index%";
+          label-urgent-padding = 2;
+          label-urgent-foreground = curgent;
+
+          # Settings
+          enable-click = true;
+          enable-scroll = false;
+          pin-workspaces = false;
+          strip-wsnumbers = true;
+        };
+
+        "module/mpd" = {
+          type = "internal/mpd";
+          #format-online = " <label-song> ";
+          #alt icons = "  ";
+
+          # UI
+          icon-play = "喇";
+          icon-pause = "";
+          format-online-padding = 2;
+          format-online-background = shade8;
+          format-online-foreground = ashade8;
+          format-online = "<toggle> <label-song> ";
+
+          # Settings
+          label-song-maxlen = "25";
+          label-song-ellipsis = "true";
+        };
+
+        "module/network" = {
+          type = "internal/network";
+          interface = "wlan1";
+
+          # Connected
+          label-connected = "直";
+          format-connected = "<label-connected>";
+          label-connected-foreground = shade7;
+          label-connected-padding = 2;
+
+          # Disconnected
+          label-disconnected = "睊";
+          format-disconnected = "<label-disconnected>";
+          label-disconnected-foreground = shade7;
+          label-disconnected-padding = 2;
         };
 
         "module/audio" = {
@@ -198,25 +271,6 @@ in
           ramp-capacity-1-foreground = red;
         };
 
-        "module/cpu" = {
-          type = "internal/cpu";
-          interval = "0.5";
-          label = "CPU %percentage%%";
-          format = " <label> <ramp-coreload>";
-          #format-foreground = quaternary;
-          #format-background = secondary;
-          #format-padding = 1;
-          ramp-coreload-spacing = 1;
-          ramp-coreload-0 = "▁";
-          ramp-coreload-1 = "▂";
-          ramp-coreload-2 = "▃";
-          ramp-coreload-3 = "▄";
-          ramp-coreload-4 = "▅";
-          ramp-coreload-5 = "▆";
-          ramp-coreload-6 = "▇";
-          ramp-coreload-7 = "█";
-        };
-
         "module/calendar" = {
           type = "internal/date"; 
           interval = "1.0";
@@ -247,118 +301,6 @@ in
           label-background = shade3;
         };
 
-        "module/i3" = {
-          type = "internal/i3";
-
-          # Icons
-          ws-icon-0 = "1;";
-          ws-icon-1 = "2;";
-          ws-icon-2 = "3;";
-          ws-icon-3 = "4;";
-          ws-icon-4 = "5;";
-          ws-icon-5 = "6;";
-          ws-icon-6 = "7;";
-          ws-icon-7 = "8;";
-          ws-icon-8 = "9;";
-
-          format = "<label-state> <label-mode>";
-          format-background = shade2;
-          label-mode = "%mode%";
-          label-mode-padding = 1;
-
-          # Focused
-          label-focused = "%index%";
-          label-focused-padding = 1;
-          label-focused-foreground = acolor;
-
-          # Unfocused
-          label-unfocused = "%index%";
-          label-unfocused-padding = 1;
-          label-unfocused-foreground = fg;
-
-          # Visible
-          label-visible = "%index%";
-          label-visible-padding = 1;
-          label-visible-foreground = coccupied;
-
-          # Urgent
-          label-urgent = "%index%";
-          label-urgent-padding = 1;
-          label-urgent-foreground = curgent;
-
-          # Settings
-          enable-click = true;
-          enable-scroll = false;
-          pin-workspaces = false;
-          strip-wsnumbers = true;
-        };
-
-        "module/memory" = {
-          type = "internal/memory"; 
-          interval = 3;
-          format = "<label>";
-          label = " RAM %percentage_used%%";
-          #format-background = tertiary;
-          #format-foreground = secondary;
-          #format-padding = 1; 
-        };
-
-        #"module/network" = {
-        #  type = "internal/network";
-        #  interface = "enp3s0";
-
-        #  interval = "1.0";
-
-        #  accumulate-stats = true;
-        #  unknown-as-up = true;
-
-        #  format-connected = "<label-connected>";
-        #  #format-connected-background = mf;
-        #  #format-connected-underline = bg;
-        #  #format-connected-overline = bg;
-        #  #format-connected-padding = 2;
-        #  #format-connected-margin = 0;
-        #  
-        #  #format-disconnected = "<label-disconnected>";
-        #  #format-disconnected-background = mf;
-        #  #format-disconnected-underline = bg;
-        #  #format-disconnected-overline = bg;
-        #  #format-disconnected-padding = 2;
-        #  #format-disconnected-margin = 0;
-        #  
-        #  label-connected = "D %downspeed:2% | U %upspeed:2%";
-        #  label-disconnected = "DISCONNECTED";
-        #};
-
-        "module/temperature" = {
-          type = "internal/temperature";
-          interval = "0.5";
-          thermal-zone = 0; # TODO: Find a better way to fill that
-          base-temperature = 20;
-          warn-temperature = 60;
-          units = true;
-
-          format = "<ramp> <label>";
-          #format-background = mf;
-          #format-underline = bg;
-          #format-overline = bg;
-          #format-padding = 2;
-          #format-margin = 0;
-          
-          format-warn = "<ramp> <label-warn>";
-          #format-warn-background = mf;
-          #format-warn-underline = bg;
-          #format-warn-overline = bg;
-          #format-warn-padding = 2;
-          #format-warn-margin = 0;
-          label = "TEMP %temperature-c%";
-          label-warn = "TEMP %temperature-c%";
-          #label-warn-foreground = "#f00"; 
-          ramp-0 = "";
-          ramp-1 = "";
-          ramp-2 = "";
-        };
-
         "module/powermenu" = {
           type = "custom/menu";
 
@@ -379,11 +321,78 @@ in
           menu-0-2-exec = "systemctl poweroff";
         };
 
-        #"module/wireless-network" = {
-        #  type = "internal/network";
-        #  interval = "wlp2s0";
-        #};
+        "module/cpu_ramp" = {
+          type = "internal/cpu";
+          interval = "0.5";
 
+          # UI
+          format = "<ramp-coreload>";
+          format-padding = 2;
+          format-background = gray_shade6; 
+
+          # Ramp
+          ramp-coreload-0 = "▁";
+          ramp-coreload-1 = "▂";
+          ramp-coreload-2 = "▃";
+          ramp-coreload-3 = "▄";
+          ramp-coreload-4 = "▅";
+          ramp-coreload-5 = "▆";
+          ramp-coreload-6 = "▇";
+          ramp-coreload-7 = "█";
+          ramp-coreload-spacing = 1;
+        };
+
+        "module/cpu" = {
+          type = "internal/cpu";
+          interval = "0.5";
+
+          # UI
+          label = "CPU %percentage%%";
+          format = " <label>";
+          format-padding = 2;
+          format-background = gray_shade5; 
+        };
+
+        "module/memory" = {
+          type = "internal/memory"; 
+          interval = 3;
+
+          # UI
+          format = "<label>";
+          label = " RAM %percentage_used%%";
+          format-padding = 2; 
+          format-background = gray_shade4;
+        };
+
+        "module/temperature" = {
+          type = "internal/temperature";
+          interval = "0.5";
+
+          # Settings
+          thermal-zone = 0;
+          base-temperature = 20;
+          warn-temperature = 60;
+          units = true;
+
+          # UI
+          format = "<ramp> <label>";
+          format-padding = 2;
+          format-background = gray_shade3;
+
+          # Warning
+          label = "TEMP %temperature-c%";
+          label-warn = "TEMP %temperature-c%";
+          format-warn = "<ramp> <label-warn>";
+          format-warn-padding = 2;
+          format-warn-background = gray_shade3;
+
+          # Ramp
+          ramp-0 = "";
+          ramp-1 = "";
+          ramp-2 = "";
+          ramp-3 = "";
+          ramp-4 = "";
+        };
       };
     };
   }

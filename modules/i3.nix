@@ -22,6 +22,8 @@
         "${modifier}+g" = "exec google-chrome-stable";
         "${modifier}+d" = "exec ${pkgs.rofi}/bin/rofi -modi drun -show drun";
         "${modifier}+Shift+d" = "exec ${pkgs.rofi}/bin/rofi -show window";
+        "${modifier}+m" = "exec polybar -q -r bottom &";
+        #"${modifier}+Shift+m" = "polybar -q -r bottom &";
         "XF86MonBrightnessUp" = "exec brightnessctl set +10";
         "XF86MonBrightnessDown" = "exec brightnessctl set -10";
         "XF86AudioMute" = "exec amixer set Master toggle";
