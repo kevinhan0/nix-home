@@ -17,11 +17,13 @@
         "${modifier}+Shift+j" = "move down";
         "${modifier}+Shift+h" = "move left";
         "${modifier}+Shift+l" = "move right";
+        "${modifier}+t" = "layout tabbed";
+        "${modifier}+w" = "kill";
         "${modifier}+g" = "exec google-chrome-stable";
         "${modifier}+d" = "exec ${pkgs.rofi}/bin/rofi -modi drun -show drun";
         "${modifier}+Shift+d" = "exec ${pkgs.rofi}/bin/rofi -show window";
-        "XF86MonBrightnessUp" = "exec xbacklight -inc 10";
-        "XF86MonBrightnessDown" = "exec xbacklight -dec 10";
+        "XF86MonBrightnessUp" = "exec brightnessctl set +10";
+        "XF86MonBrightnessDown" = "exec brightnessctl set -10";
         "XF86AudioMute" = "exec amixer set Master toggle";
         "XF86AudioLowerVolume" = "exec amixer set Master 4%-";
         "XF86AudioRaiseVolume" = "exec amixer set Master 4%+";
@@ -38,7 +40,7 @@
           notification = false;
         }
         {
-          command = "${pkgs.feh}/bin/feh --bg-scale ~/Pictures/background.png";
+          command = "${pkgs.feh}/bin/feh --bg-fill ~/Pictures/background.png";
           always = true;
           notification = false;
         }

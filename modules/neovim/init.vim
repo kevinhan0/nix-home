@@ -120,6 +120,6 @@
   autocmd Filetype ipynb nmap <silent><Leader>j :VimpyterStartJupyter<CR>
 
   " vimwiki
-  let g:vimwiki_list = [{'path': '~/Dropbox/Projects/vimwiki/',
+  let g:vimwiki_list = [{'path': '~/Projects/vimwiki/',
                         \'syntax': 'markdown', 'ext': '.md'}]
 ''

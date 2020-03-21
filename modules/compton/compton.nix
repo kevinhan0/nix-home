@@ -17,7 +17,7 @@
   noDockShadow = true;
   noDNDShadow = true;
 
-  activeOpacity = "0.8";
+  activeOpacity = "1.0";
   inactiveOpacity = "0.6";
   menuOpacity = "0.8";
 

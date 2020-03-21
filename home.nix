@@ -1,20 +1,29 @@
 { config, lib, pkgs, ... }:
 
 {
+  # Settings
+  xsession.enable = true;
+  home.stateVersion = "19.09";
   fonts.fontconfig.enable = true;
-
-  imports = [
-    ./modules/neovim/neovim.nix
-    ./modules/zsh/zsh.nix
-    ./modules/i3/i3.nix
-    ./modules/tmux/tmux.nix
-    ./modules/rofi/rofi.nix
-    ./modules/polybar/polybar.nix
-    ./modules/termite/termite.nix
-  ];
-
   programs.home-manager.enable = true;
 
+  # Modules
+  imports = [
+    ./modules/i3.nix
+    ./modules/tmux.nix
+    ./modules/rofi.nix
+    ./modules/polybar.nix
+    ./modules/termite.nix
+    ./modules/zsh/zsh.nix
+    ./modules/neovim/neovim.nix
+  ];
+
+  # Services
+  services = {
+    compton = import ./modules/compton/compton.nix {};
+  };
+
+  # Themes
   gtk = {
     enable=true;
     font = {
@@ -31,13 +40,13 @@
     };
   };
 
-  home.stateVersion = "19.09";
-
+  # Packages
   home.packages = with pkgs; [
     bat
     conky
     curl
     docker
+    dropbox
     exa
     feh
     fontconfig
@@ -48,23 +57,18 @@
     kubectl
     neofetch
     nix-prefetch-git
+    mpd
     openvpn
     pandoc
     powerline-fonts
+    spotify
     texlive.combined.scheme-medium
     tree
     unzip
     wget
-    xorg.xbacklight
     (callPackage ./modules/wps_office.nix { })
     (callPackage ./modules/fira-code/fira-code.nix { })
   ];
- 
-  services = {
-    compton = import ./modules/compton/compton.nix {};
-  };
-
-  xsession.enable = true;
 
   programs.git = {
     enable = true;
