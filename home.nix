@@ -55,6 +55,7 @@
     htop
     jq
     kubectl
+    ncmpcpp
     neofetch
     nix-prefetch-git
     mpd

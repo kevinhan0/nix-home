@@ -59,6 +59,8 @@ in
       package = pkgs.polybar.override {
         i3GapsSupport = true;
         alsaSupport = true;
+        mpdSupport = true;
+        #iwSupport = true;
       };
 
       script = "polybar -q -r top &";
@@ -105,6 +107,7 @@ in
 
           # UI
           foreground = fg;
+          background = bg;
           font-0 = "FiraCode Nerd Font:size=10;3";
           font-1 = "FiraCode Nerd Font:style=Bold:size=10;3";
 
@@ -171,16 +174,18 @@ in
 
         "module/mpd" = {
           type = "internal/mpd";
-          #format-online = " <label-song> ";
-          #alt icons = "  ";
+          host = "localhost";
+          port = 6600;
+          interval = 1;
+          label-song = "%artist% - %title%";
 
           # UI
-          icon-play = "喇";
-          icon-pause = "";
+          icon-play = "喇 ";
+          icon-pause = " ";
           format-online-padding = 2;
           format-online-background = shade8;
           format-online-foreground = ashade8;
-          format-online = "<toggle> <label-song> ";
+          format-online = "<toggle> <label-song>";
 
           # Settings
           label-song-maxlen = "25";
