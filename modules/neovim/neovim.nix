@@ -99,6 +99,15 @@
 
       # Themes
       colours
+
+      # Highlighting
+      ale
+      coc-git
+      coc-json
+      coc-html
+      coc-yaml
+      coc-python
+      vim-nix
     ];
   };
 }
