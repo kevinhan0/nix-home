@@ -45,15 +45,6 @@
           sha256 = "0wlbv50xwdmj8s54pbbffka6sb7rg3mmkz8z00vbv39bxk11hq9p";
         };
       };
-      coc = pkgs.vimUtils.buildVimPlugin {
-        name = "coc";
-        src = pkgs.fetchFromGitHub {
-          owner = "neoclide";
-          repo = "coc.nvim";
-          rev = "149c37453982ed83f98fbd73820d8d0f72f23cf0";
-          sha256 = "15m702iyzkhxa2rw71xanvkpmrs04kwv690ydmqf3244v98j9f6s";
-        };
-      };
       vimpyter = pkgs.vimUtils.buildVimPlugin {
         name = "vimpyter";
         src = pkgs.fetchFromGitHub {
@@ -106,7 +97,7 @@
 
       # Terminal
       #split-term-vim
-      #vim-gitgutter
+      vim-gitgutter
 
       # Themes
       onedark
@@ -114,11 +105,11 @@
 
       # Highlighting
       ale
-      coc
-      #coc-git
-      #coc-json
-      #coc-html
-      #coc-yaml
+      coc-nvim
+      coc-git
+      coc-json
+      coc-html
+      coc-yaml
       coc-python
       vim-nix
     ];

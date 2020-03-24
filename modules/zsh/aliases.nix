@@ -24,4 +24,5 @@
   # Modules
   t = "tmux";
   v = "nvim";
+  music = "ncmpcpp";
 }

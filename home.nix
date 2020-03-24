@@ -1,5 +1,31 @@
 { config, lib, pkgs, ... }:
 
+with pkgs;
+let
+  my-python-packages = python-packages: with python-packages; [
+    numpy
+    matplotlib
+    scipy
+    ipython
+    scikitlearn
+    nltk
+    Keras
+    pandas
+    black
+    lightgbm
+    seaborn
+    shapely
+    jupyter
+    jupyterlab
+    pyspark
+    xgboost
+    geopandas
+    tensorflow
+    gdal
+  ];
+  python-with-my-packages = python37.withPackages my-python-packages;
+in
+
 {
   # Settings
   xsession.enable = true;
@@ -59,6 +85,7 @@
     neofetch
     nix-prefetch-git
     mpd
+    python-with-my-packages
     openvpn
     pandoc
     playerctl
