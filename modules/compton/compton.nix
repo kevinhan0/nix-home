@@ -17,8 +17,8 @@
   noDockShadow = true;
   noDNDShadow = true;
 
-  activeOpacity = "1.0";
-  inactiveOpacity = "0.6";
+  activeOpacity = "0.9";
+  inactiveOpacity = "0.7";
   menuOpacity = "0.8";
 
   backend = "glx";

@@ -3,11 +3,13 @@
 {
   programs.neovim = {
     enable = true;
+    viAlias = true;
+	vimAlias = true;
     withPython3 = true;
     extraPython3Packages = (ps: with ps; [ black ]);
     extraConfig = import ./init.vim;
     plugins = let
-      colours = pkgs.vimUtils.buildVimPlugin {
+      onedark = pkgs.vimUtils.buildVimPlugin {
         name = "onedark";
         src = pkgs.fetchFromGitHub {
           owner = "joshdick";
@@ -41,6 +43,15 @@
           repo = "black";
           rev = "5b552fab9d8820db22d6266a8702b0f24e4c7ed9";
           sha256 = "0wlbv50xwdmj8s54pbbffka6sb7rg3mmkz8z00vbv39bxk11hq9p";
+        };
+      };
+      coc = pkgs.vimUtils.buildVimPlugin {
+        name = "coc";
+        src = pkgs.fetchFromGitHub {
+          owner = "neoclide";
+          repo = "coc.nvim";
+          rev = "149c37453982ed83f98fbd73820d8d0f72f23cf0";
+          sha256 = "15m702iyzkhxa2rw71xanvkpmrs04kwv690ydmqf3244v98j9f6s";
         };
       };
       vimpyter = pkgs.vimUtils.buildVimPlugin {
@@ -98,14 +109,16 @@
       #vim-gitgutter
 
       # Themes
-      colours
+      onedark
+      wal-vim
 
       # Highlighting
       ale
-      coc-git
-      coc-json
-      coc-html
-      coc-yaml
+      coc
+      #coc-git
+      #coc-json
+      #coc-html
+      #coc-yaml
       coc-python
       vim-nix
     ];

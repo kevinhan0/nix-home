@@ -19,16 +19,25 @@
         "${modifier}+Shift+l" = "move right";
         "${modifier}+t" = "layout tabbed";
         "${modifier}+w" = "kill";
-        "${modifier}+g" = "exec google-chrome-stable";
+        "${modifier}+g" = "exec firefox";
         "${modifier}+d" = "exec ${pkgs.rofi}/bin/rofi -modi drun -show drun";
         "${modifier}+Shift+d" = "exec ${pkgs.rofi}/bin/rofi -show window";
         "${modifier}+m" = "exec polybar -q -r bottom &";
+        "${modifier}+c" = "exec --no-startup-id xdotool key --clearmodifiers ctrl+c";
+        #"${modifier}+c" = "exec xte 'keydown Control_L' 'key c' 'keyup Control_L'";
+        #"${modifier}+v" = "exec xte 'keydown Control_L' 'key v' 'keyup Control_L'";
         #"${modifier}+Shift+m" = "polybar -q -r bottom &";
-        "XF86MonBrightnessUp" = "exec brightnessctl set +10";
-        "XF86MonBrightnessDown" = "exec brightnessctl set -10";
+        "XF86MonBrightnessUp" = "exec brightnessctl set 10%+";
+        "XF86MonBrightnessDown" = "exec brightnessctl set 10%-";
+        "XF86KbdBrightnessUp" = "exec brightnessctl --device='smc::kbd_backlight' set 10%+";
+        "XF86KbdBrightnessDown" = "exec brightnessctl --device='smc::kbd_backlight' set 10%-";
         "XF86AudioMute" = "exec amixer set Master toggle";
         "XF86AudioLowerVolume" = "exec amixer set Master 4%-";
         "XF86AudioRaiseVolume" = "exec amixer set Master 4%+";
+        "XF86AudioPlay" = "exec playerctl play";
+        "XF86AudioPause" = "exec playerctl pause";
+        "XF86AudioNext" = "exec playerctl next";
+        "XF86AudioPrev" = "exec playerctl previous";
       }; 
       window.border = 0;      
       gaps = {

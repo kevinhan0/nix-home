@@ -12,18 +12,23 @@
   set lazyredraw
   set noshowmode
   set cursorline
+  set cmdheight=2
   set shiftwidth=4
-  set termguicolors
+  set shortmess+=c
   set softtabstop=4
   set nowritebackup
   set relativenumber
+  set signcolumn=yes
   filetype plugin on
+  set updatetime=300
+  set termguicolors
   set clipboard=unnamedplus
   set guicursor=n-v-c-sm:ver25-blinkon0,i-ci-ve:ver25,r-cr-o:hor20
 
   " colorscheme
   packadd! onedark
   colorscheme onedark
+  " colorscheme wal
 
   " indentLine
   let g:indentLine_first_char = '┊'
@@ -95,11 +100,6 @@
   set completeopt-=longest
 
   " Black
-  " sudo apt-get install python3-venv
-  " python3 -m venv ~/.vim_black
-  " source ~/.vim_black/bin/activate
-  " pip install black
-  " https://github.com/psf/black/issues/1293
   let g:black_virtualenv = "~/.vim_black"
   autocmd BufWritePre *.py execute ':Black'
 
@@ -122,4 +122,24 @@
   " vimwiki
   let g:vimwiki_list = [{'path': '~/Projects/vimwiki/',
                         \'syntax': 'markdown', 'ext': '.md'}]
+
+  " coc
+  function! s:check_back_space() abort
+    let col = col('.') - 1
+    return !col || getline('.')[col - 1]  =~ '\s'
+  endfunction
+ 
+  inoremap <silent><expr> <Tab>
+        \ pumvisible() ? "\<C-n>" :
+        \ <SID>check_back_space() ? "\<Tab>" :
+        \ coc#refresh()
+
+  inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+  inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+  inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+
+  nmap <silent> gd <Plug>(coc-definition)
+  nmap <silent> gy <Plug>(coc-type-definition)
+  nmap <silent> gi <Plug>(coc-implementation)
+  nmap <silent> gr <Plug>(coc-references)
 ''

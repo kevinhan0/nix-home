@@ -50,6 +50,7 @@ in
     initExtra = ''
       ${sourceFile NIX_PATH}
       neofetch
+      cd ~/Projects
     '';
   };
 }

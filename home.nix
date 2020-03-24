@@ -10,11 +10,12 @@
   # Modules
   imports = [
     ./modules/i3.nix
+    #./modules/mpd.nix
     ./modules/tmux.nix
     ./modules/rofi.nix
     ./modules/polybar.nix
-    ./modules/termite.nix
     ./modules/zsh/zsh.nix
+    ./modules/termite.nix
     ./modules/neovim/neovim.nix
   ];
 
@@ -43,15 +44,14 @@
   # Packages
   home.packages = with pkgs; [
     bat
-    conky
+    brightnessctl
     curl
     docker
     dropbox
     exa
     feh
+    firefox
     fontconfig
-    git
-    google-chrome
     htop
     jq
     kubectl
@@ -61,7 +61,8 @@
     mpd
     openvpn
     pandoc
-    powerline-fonts
+    playerctl
+    pywal
     spotify
     texlive.combined.scheme-medium
     tree

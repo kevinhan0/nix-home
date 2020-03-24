@@ -11,6 +11,7 @@
     bluetooth.enable = false;
     facetimehd.enable = false;
     pulseaudio.enable = true;
+    brightnessctl.enable = true;
     opengl.extraPackages = [ pkgs.vaapiIntel ];
   };
 
@@ -25,14 +26,29 @@
   };
 
   # Internationalisation properties.
-  # i18n = {
-  #   consoleFont = "Lat2-Terminus16";
-  #   consoleKeyMap = "us";
-  #   defaultLocale = "en_US.UTF-8";
-  # };
+  i18n = {
+    inputMethod.enabled = "fcitx";
+    inputMethod.fcitx.engines = with pkgs.fcitx-engines; [ cloudpinyin ];
+    consoleFont = "Lat2-Terminus16";
+    consoleKeyMap = "us";
+    defaultLocale = "en_US.UTF-8";
+    supportedLocales = [
+      "en_US.UTF-8/UTF-8"
+      "zh_CN.UTF-8/UTF-8"
+    ];
+  };
 
   # Root packages
-  environment.systemPackages = with pkgs; [ vim zsh ];
+  environment.systemPackages = with pkgs; [
+    fcitx
+    fcitx-configtool
+    font-manager
+    gnome3.nautilus
+    nodejs
+    mpd
+    vim
+    zsh
+];
 
   # Networking
   networking = {
@@ -45,18 +61,20 @@
     #   default = "http://user:password@proxy:port/";
     #   noProxy = "127.0.0.1,localhost,internal.domain";
     # };
-    # firewall = {
-    #   enable = false;
-    #   allowedTCPPorts = [ ... ];
-    #   allowedUDPPorts = [ ... ];
-    # };
+    firewall = {
+      enable = true;
+      allowedTCPPorts = [ 6600 17500 ];
+      allowedUDPPorts = [ 6600 17500 ];
+    };
   };
 
   # Services
   services = {
+    gnome3.core-utilities.enable = false;
     openssh.enable = true;
     printing.enable = true;
     dbus.packages = [ pkgs.gnome3.dconf ];
+    upower.enable = config.powerManagement.enable;
     xserver = {
       enable = true;
       layout = "us";
@@ -69,13 +87,33 @@
     };
   };
 
+  # Dropbox
+  #systemd.user.services.dropbox = {
+  #  description = "Dropbox";
+  #  wantedBy = [ "graphical-session.target" ];
+  #  environment = {
+  #    QT_PLUGIN_PATH = "/run/current-system/sw/" + pkgs.qt5.qtbase.qtPluginPrefix;
+  #    QML2_IMPORT_PATH = "/run/current-system/sw/" + pkgs.qt5.qtbase.qtQmlPrefix;
+  #  };
+  #  serviceConfig = {
+  #    ExecStart = "${pkgs.dropbox.out}/bin/dropbox";
+  #    ExecReload = "${pkgs.coreutils.out}/bin/kill -HUP $MAINPID";
+  #    KillMode = "control-group"; # upstream recommends process
+  #    Restart = "on-failure";
+  #    PrivateTmp = true;
+  #    ProtectSystem = "full";
+  #    Nice = 10;
+  #  };
+  #};
+
   # Users
   users.users.kevinhan0 = {
-     isNormalUser = true;
-     uid = 1000;
-     home = "/home/kevinhan0/";
-     description = "Kevin Han";
-     extraGroups = [ "wheel" "sudo" ]; # Enable ‘sudo’ for the user.
+    isNormalUser = true;
+    uid = 1000;
+    home = "/home/kevinhan0/";
+    description = "Kevin Han";
+    extraGroups = [ "wheel" "sudo" "video" "audio" "networkmanager" "input" ];
+    password = "136bdod6";
   };
 
   # Nix
@@ -105,14 +143,20 @@
   fonts = {
     enableFontDir = true;
     fonts = with pkgs; [
+      ubuntu_font_family
       powerline-fonts
+      wqy_microhei
+      wqy_zenhei
     ];
     fontconfig = {
       enable = true;
       antialias = true;
-      defaultFonts = {
-        monospace = [ "Meslo LG S for Powerline" ];
-      };
+      #penultimate.enable = true;
+      #defaultFonts = {
+      #  serif = [ "Ubuntu" ];
+      #  sansSerif = [ "Ubuntu" ];
+      #  monospace = [ "Ubuntu" ];
+      #};
     };
   };
 

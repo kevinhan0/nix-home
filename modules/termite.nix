@@ -8,7 +8,8 @@
     backgroundColor = "#282c34";
     foregroundColor = "#abb2bf";
     foregroundBoldColor = "#abb2bf";
-    colorsExtra = ''
+    colorsExtra =
+    ''
       # black
       color0  = #282c34
       color8  = #5c6370
