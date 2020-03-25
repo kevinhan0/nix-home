@@ -54,6 +54,15 @@
           sha256 = "0kwf8ls5nar8wa36lfrbm3ysryim2pcz9ywv18rjqfp7wacz683c";
         };
       };
+      vim-xmark = pkgs.vimUtils.buildVimPlugin {
+        name = "vim-xmark";
+        src = pkgs.fetchFromGitHub {
+          owner = "junegunn";
+          repo = "vim-xmark";
+          rev = "7e27f6fce7a249f0a4820fbc943191bbb7a1af10";
+          sha256 = "1l25xvmz32vvnjn0hcvgaqr938pcqdmp1w9z1a8hnj6xabhymy4v";
+        };
+      };
     in
     with pkgs.vimPlugins; [
       # LaTeX
@@ -65,6 +74,7 @@
       vimwiki
       vim-markdown
       tabular
+      #vim-xmark
 
       # Airline
       vim-airline
@@ -83,6 +93,7 @@
 
       # Syntax
       #black
+      vim-nix
       indentLine
       auto-pairs
       nerdcommenter
@@ -101,9 +112,10 @@
 
       # Themes
       onedark
+      vim-one
       wal-vim
 
-      # Highlighting
+      # Auto-complete
       ale
       coc-nvim
       coc-git
@@ -111,7 +123,6 @@
       coc-html
       coc-yaml
       coc-python
-      vim-nix
     ];
   };
 }

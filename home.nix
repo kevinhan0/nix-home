@@ -41,7 +41,7 @@ in
     ./modules/rofi.nix
     ./modules/polybar.nix
     ./modules/zsh/zsh.nix
-    ./modules/termite.nix
+    ./modules/termite/termite.nix
     ./modules/neovim/neovim.nix
   ];
 
@@ -70,7 +70,6 @@ in
   # Packages
   home.packages = with pkgs; [
     bat
-    brightnessctl
     curl
     docker
     dropbox
@@ -79,6 +78,7 @@ in
     firefox
     fontconfig
     htop
+    i3lock-fancy
     jq
     kubectl
     ncmpcpp

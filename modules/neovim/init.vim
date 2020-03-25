@@ -12,7 +12,6 @@
   set lazyredraw
   set noshowmode
   set cursorline
-  set cmdheight=2
   set shiftwidth=4
   set shortmess+=c
   set softtabstop=4
