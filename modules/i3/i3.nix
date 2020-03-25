@@ -23,7 +23,7 @@
         "${modifier}+g" = "exec firefox";
         "${modifier}+d" = "exec ${pkgs.rofi}/bin/rofi -modi drun -show drun";
         "${modifier}+m" = "exec polybar -q -r bottom &";
-        "${modifier}+Shift+m" = "exec pgrep polybar --list-full | grep botton | grep '[0-9]*' | xargs kill -9";
+        "${modifier}+Shift+m" = "exec $HOME/Projects/nix-home/modules/i3/kill-bottom-polybar.sh"; 
         "${modifier}+Shift+s" = "exec gnome-screenshot";
         "${modifier}+v" = "split v";
         "${modifier}+Shift+v" = "split h";

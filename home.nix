@@ -35,14 +35,14 @@ in
 
   # Modules
   imports = [
-    ./modules/i3.nix
     #./modules/mpd.nix
     ./modules/tmux.nix
     ./modules/rofi.nix
-    ./modules/polybar.nix
+    ./modules/i3/i3.nix
     ./modules/zsh/zsh.nix
-    ./modules/termite/termite.nix
     ./modules/neovim/neovim.nix
+    ./modules/termite/termite.nix
+    ./modules/polybar/polybar.nix
   ];
 
   # Services
@@ -70,6 +70,7 @@ in
   # Packages
   home.packages = with pkgs; [
     bat
+    blueman
     curl
     docker
     dropbox
