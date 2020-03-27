@@ -27,6 +27,8 @@
   " colorscheme
   packadd! onedark
   colorscheme onedark
+  hi! Normal ctermbg=NONE guibg=NONE
+  hi! NonText guibg=NONE ctermbg=NONE
   " colorscheme wal
 
   " indentLine
@@ -141,4 +143,12 @@
   nmap <silent> gy <Plug>(coc-type-definition)
   nmap <silent> gi <Plug>(coc-implementation)
   nmap <silent> gr <Plug>(coc-references)
+
+  " markdown-preview.vim
+  let g:mkdp_auto_close = 1
+  let g:mkdp_port = "17500"
+  let g:mkdp_brower = "firefox" 
+  nnoremap <Leader>m : MarkdownPreview<cr>
+  nnoremap <Leader>mm : MarkdownPreviewStop<cr>
+
 ''

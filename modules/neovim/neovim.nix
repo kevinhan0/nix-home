@@ -63,6 +63,15 @@
           sha256 = "1l25xvmz32vvnjn0hcvgaqr938pcqdmp1w9z1a8hnj6xabhymy4v";
         };
       };
+      markdown-preview-vim = pkgs.vimUtils.buildVimPlugin {
+        name = "markdown-preview.vim";
+        src = pkgs.fetchFromGitHub {
+          owner = "iamcco";
+          repo = "markdown-preview.vim";
+          rev = "97388dc537454a90422f186cb4e1a4f9a3f95122";
+          sha256 = "13s1jrny0dll0hnn2an378xny84yni08q5lvnb0xx111s1q79fhn";
+        };
+      };
     in
     with pkgs.vimPlugins; [
       # LaTeX
@@ -75,6 +84,7 @@
       vim-markdown
       tabular
       #vim-xmark
+      markdown-preview-vim
 
       # Airline
       vim-airline

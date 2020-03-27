@@ -53,8 +53,8 @@
         width:    18%;
         orientation:  horizontal;
         children:  [mainbox];
-        x-offset:  29px;        
-        y-offset:  57px;
+        x-offset:  0px;        
+        y-offset:  0px;
       }
       mainbox {
         spacing:  0.8em;

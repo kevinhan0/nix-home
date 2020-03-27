@@ -82,6 +82,7 @@ in
     i3lock-fancy
     jq
     kubectl
+    lxappearance
     ncmpcpp
     neofetch
     nix-prefetch-git
@@ -94,7 +95,9 @@ in
     spotify
     texlive.combined.scheme-medium
     tree
+    unrar
     unzip
+    vlc
     wget
     (callPackage ./modules/wps_office.nix { })
     (callPackage ./modules/fira-code/fira-code.nix { })
