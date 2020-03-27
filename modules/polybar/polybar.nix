@@ -49,6 +49,9 @@
       "module/memory" = (import ./modules/memory.nix)."module/memory";
       "module/mpd" = (import ./modules/mpd-module.nix)."module/mpd";
       "module/spotify" = (import ./modules/spotify-module.nix)."module/spotify";
+      "module/suspend" = (import ./modules/powermenu.nix)."module/suspend";
+      "module/reboot" = (import ./modules/powermenu.nix)."module/reboot";
+      "module/poweroff" = (import ./modules/powermenu.nix)."module/poweroff";
       "module/temperature" = (import ./modules/temperature.nix)."module/temperature";
     };
   };

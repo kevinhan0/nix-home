@@ -2,23 +2,33 @@ let
   colors = import ../colors.nix;
 in
 {
-  "module/powermenu" = {
-    type = "custom/menu";
+  "module/suspend" = {
+    type = "custom/text";
+    click-left = "exec /run/current-system/sw/bin/systemctl suspend && /home/kevinhan0//.nix-profile/bin/i3lock-fancy";
+    click-right = "exec /run/current-system/sw/bin/systemctl suspend && /home/kevinhan0//.nix-profile/bin/i3lock-fancy";
+    content = "";
+    content-padding = 2;
+    content-background = colors.shade1;
+    content-foreground = colors.fg;
+  };
 
-    # UI
-    format = "<label-toggle> <menu>";
-    format-background = colors.shade2;
-    format-foreground = colors.fg;
-    format-padding = 2;
+  "module/reboot" = {
+    type = "custom/text";
+    click-left = "exec /run/current-system/sw/bin/systemctl reboot";
+    click-right = "exec /run/current-system/sw/bin/systemctl reboot";
+    content = "";
+    content-padding = 2;
+    content-background = colors.shade1;
+    content-foreground = colors.fg;
+  };
 
-    # Menu
-    label-open = "  ";
-    label-close = "";
-    menu-0-0 = "  ";
-    menu-0-1 = "  ";
-    menu-0-2 = "  ";
-    menu-0-0-exec = "systemctl suspend && i3lock-fancy";
-    menu-0-1-exec = "systemctl reboot";
-    menu-0-2-exec = "systemctl poweroff";
+  "module/poweroff" = {
+    type = "custom/text";
+    click-left = "exec /run/current-system/sw/bin/systemctl poweroff";
+    click-right = "exec /run/current-system/sw/bin/systemctl poweroff";
+    content = "";
+    content-padding = 2;
+    content-background = colors.shade1;
+    content-foreground = colors.fg;
   };
 }

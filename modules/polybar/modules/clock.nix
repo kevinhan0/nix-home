@@ -14,6 +14,6 @@ in
     format = "<label>";
     label = "%time%";
     label-padding = 2;
-    label-background = colors.shade3;
+    label-background = colors.shade2;
   };
 }

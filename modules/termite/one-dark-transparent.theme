@@ -1,5 +1,5 @@
 ''
-    background = rgba(40, 44, 52, 0.7)
+    background = rgba(40, 44, 52, 0.6)
     foreground = #abb2bf
     color0  = #282c34
     color8  = #5c6370

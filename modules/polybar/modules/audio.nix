@@ -9,12 +9,12 @@ in
     label-volume = "%percentage%%";
     format-volume = "<ramp-volume> <label-volume>";
     format-volume-padding = 2;
-    format-volume-background = colors.shade6;
+    format-volume-background = colors.shade5;
 
     # Muted
     label-muted = "婢";
     label-muted-padding = 2;
-    label-muted-background = colors.shade6;
+    label-muted-background = colors.shade5;
 
     # Ramp
     ramp-volume-0 = "";

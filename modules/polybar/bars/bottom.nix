@@ -18,7 +18,7 @@ in
     font-1 = "FiraCode Nerd Font:style=Bold:size=9;3";
 
     # Modules
-    modules-right = "bluetooth cpu_ramp cpu filesystem memory temperature";
+    modules-right = "cpu_ramp cpu filesystem memory temperature";
 
     # Setting
     locale = "en_US.UTF-8";

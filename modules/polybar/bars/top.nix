@@ -18,8 +18,8 @@ in
     font-1 = "FiraCode Nerd Font:style=Bold:size=9;3";
 
     # Modules
-    modules-left = "i3";
-    modules-right = "spotify network audio battery calendar clock powermenu";
+    modules-left = "temperature memory filesystem cpu";
+    modules-right = "spotify network bluetooth audio battery calendar clock suspend reboot poweroff";
 
     # Settings
     locale = "en_US.UTF-8";

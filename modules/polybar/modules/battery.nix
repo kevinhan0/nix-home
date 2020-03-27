@@ -13,13 +13,13 @@ in
     label-full = "  100%";
     format-full = "<label-full>";
     format-full-padding = 2;
-    format-full-background = colors.shade5;
+    format-full-background = colors.shade4;
 
     # Charging
     label-charging = "%percentage%%";
     format-charging = " <animation-charging> <label-charging>";
     format-charging-padding = 2;
-    format-charging-background = colors.shade5;
+    format-charging-background = colors.shade4;
 
     # Charging animation
     animation-charging-0 = " ";
@@ -33,7 +33,7 @@ in
     label-discharging = "%percentage%%";
     format-discharging = "<ramp-capacity> <label-discharging>";
     format-discharging-padding = 2;
-    format-discharging-background = colors.shade5;
+    format-discharging-background = colors.shade4;
 
     # Ramp
     ramp-capacity-0 = " ";
