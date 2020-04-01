@@ -24,5 +24,6 @@
   # Modules
   t = "tmux";
   v = "nvim";
+  jv = "jupyter qtconsole --style stata-dark --ConsoleWidget.font_size=10 --JupyterQtConsoleApp.hide_menubar=True & nvim";
   music = "ncmpcpp";
 }

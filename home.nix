@@ -17,11 +17,13 @@ let
     shapely
     jupyter
     jupyterlab
+    qtconsole
     pyspark
     xgboost
     geopandas
     tensorflow
     gdal
+    pip
   ];
   python-with-my-packages = python37.withPackages my-python-packages;
 in
@@ -73,7 +75,6 @@ in
     blueman
     curl
     docker
-    dropbox
     exa
     feh
     firefox
@@ -86,19 +87,23 @@ in
     ncmpcpp
     neofetch
     nix-prefetch-git
+    nodejs
     mpd
     python-with-my-packages
     openvpn
     pandoc
     playerctl
-    pywal
+    qt5Full
     spotify
+    #steam
     texlive.combined.scheme-medium
     tree
+    thunderbird
     unrar
     unzip
     vlc
     wget
+    google-chrome
     (callPackage ./modules/wps_office.nix { })
     (callPackage ./modules/fira-code/fira-code.nix { })
   ];

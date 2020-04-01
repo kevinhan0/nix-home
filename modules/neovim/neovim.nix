@@ -6,7 +6,7 @@
     viAlias = true;
 	vimAlias = true;
     withPython3 = true;
-    extraPython3Packages = (ps: with ps; [ black ]);
+    extraPython3Packages = (ps: with ps; [ black jupyter ]);
     extraConfig = import ./init.vim;
     plugins = let
       onedark = pkgs.vimUtils.buildVimPlugin {
@@ -41,8 +41,8 @@
         src = pkgs.fetchFromGitHub {
           owner = "psf";
           repo = "black";
-          rev = "5b552fab9d8820db22d6266a8702b0f24e4c7ed9";
-          sha256 = "0wlbv50xwdmj8s54pbbffka6sb7rg3mmkz8z00vbv39bxk11hq9p";
+          rev = "9ed2542e938c327a53c17f8932ee5fc53776ba31";
+          sha256 = "0iyq1l4ynwniya1fdjq1846m6m5zrd5yz9jjzi4xsja0djbh57ci";
         };
       };
       vimpyter = pkgs.vimUtils.buildVimPlugin {
@@ -54,13 +54,13 @@
           sha256 = "0kwf8ls5nar8wa36lfrbm3ysryim2pcz9ywv18rjqfp7wacz683c";
         };
       };
-      vim-xmark = pkgs.vimUtils.buildVimPlugin {
-        name = "vim-xmark";
+      jupyter-vim = pkgs.vimUtils.buildVimPlugin {
+        name = "jupyter-vim";
         src = pkgs.fetchFromGitHub {
-          owner = "junegunn";
-          repo = "vim-xmark";
-          rev = "7e27f6fce7a249f0a4820fbc943191bbb7a1af10";
-          sha256 = "1l25xvmz32vvnjn0hcvgaqr938pcqdmp1w9z1a8hnj6xabhymy4v";
+          owner = "jupyter-vim";
+          repo = "jupyter-vim";
+          rev = "5e6b8c8e027b6a504e54ed03db9f4d915d74ce8d";
+          sha256 = "16szppdjlcynq2kwkiqg5h119mixna0n1wlsslpxcvz6wjz91jvd";
         };
       };
       markdown-preview-vim = pkgs.vimUtils.buildVimPlugin {
@@ -70,6 +70,15 @@
           repo = "markdown-preview.vim";
           rev = "97388dc537454a90422f186cb4e1a4f9a3f95122";
           sha256 = "13s1jrny0dll0hnn2an378xny84yni08q5lvnb0xx111s1q79fhn";
+        };
+      };
+      split-term-vim = pkgs.vimUtils.buildVimPlugin {
+        name = "split-term.vim";
+        src = pkgs.fetchFromGitHub {
+          owner = "vimlab";
+          repo = "split-term.vim";
+          rev = "a4e28cab77ad07fc8a0ebb62a982768c02eb287c";
+          sha256 = "12vrmbq1r8d6sgyxjwi0s856n1v4vjhrf8wpwq6l4ydmk1bnvjkb";
         };
       };
     in
@@ -83,7 +92,6 @@
       vimwiki
       vim-markdown
       tabular
-      #vim-xmark
       markdown-preview-vim
 
       # Airline
@@ -115,6 +123,7 @@
       # Python
       tslime-vim
       vimpyter
+      jupyter-vim
 
       # Terminal
       #split-term-vim
@@ -123,7 +132,6 @@
       # Themes
       onedark
       vim-one
-      wal-vim
 
       # Auto-complete
       ale

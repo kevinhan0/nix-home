@@ -112,7 +112,7 @@
   autocmd! User GoyoLeave Limelight!
 
   " tslime
-  vmap <Leader><Enter> <Plug>SendSelectionToTmux
+  vmap <Leader>t <Plug>SendSelectionToTmux
   let g:tslime_always_current_session = 1
   let g:tslime_always_current_window = 1
 
@@ -151,4 +151,7 @@
   nnoremap <Leader>m : MarkdownPreview<cr>
   nnoremap <Leader>mm : MarkdownPreviewStop<cr>
 
+  " Jupyter
+  vmap <Leader><Enter> <Plug>JupyterRunVisual
+  nnoremap <Leader>j : JupyterConnect<cr>
 ''

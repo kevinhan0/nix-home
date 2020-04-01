@@ -22,8 +22,8 @@
         "${modifier}+q" = "exec i3lock-fancy";
         "${modifier}+g" = "exec firefox";
         "${modifier}+d" = "exec ${pkgs.rofi}/bin/rofi -modi drun -show drun";
-        #"${modifier}+m" = "exec polybar -q -r bottom &";
-        #"${modifier}+Shift+m" = "exec $HOME/Projects/nix-home/modules/i3/kill-bottom-polybar.sh"; 
+        "${modifier}+m" = "exec polybar -q -r bottom &";
+        "${modifier}+Shift+m" = "exec $HOME/Projects/nix-home/modules/i3/kill-bottom-polybar.sh"; 
         "${modifier}+Shift+s" = "exec gnome-screenshot";
         "${modifier}+v" = "split v";
         "${modifier}+Shift+v" = "split h";
