@@ -15,7 +15,7 @@ in
     # UI
     format = "<ramp> <label>";
     format-padding = 2;
-    format-background = colors.shade1;
+    format-background = colors.shade5;
 
     # Warning
     #label = "TEMP %temperature-c%";
@@ -23,7 +23,7 @@ in
     label-warn = "TEMP %temperature-c%";
     format-warn = "<ramp> <label-warn>";
     format-warn-padding = 2;
-    format-warn-background = colors.shade1;
+    format-warn-background = colors.shade5;
 
     # Ramp
     ramp-0 = "";

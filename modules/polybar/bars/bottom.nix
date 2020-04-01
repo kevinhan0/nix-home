@@ -4,12 +4,12 @@ in
 {
   "bar/bottom" = {
     # Position
-    width = "100%";
+    width = "10%";
     height = 32;
-    offset-x = "2%";
-    offset-y = "2%";
+    offset-x = "50%";
+    offset-y = "50%";
     bottom = true;
-    fixed-center = true;          
+    fixed-center = true;
 
     # UI
     foreground = colors.fg;
@@ -18,7 +18,7 @@ in
     font-1 = "FiraCode Nerd Font:style=Bold:size=9;3";
 
     # Modules
-    modules-right = "cpu_ramp cpu filesystem memory temperature";
+    modules-center = "i3";
 
     # Setting
     locale = "en_US.UTF-8";

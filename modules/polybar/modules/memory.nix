@@ -10,6 +10,6 @@ in
     format = "<label>";
     label = " %percentage_used%%";
     format-padding = 2; 
-    format-background = colors.shade2;
+    format-background = colors.shade5;
   };
 }

@@ -10,7 +10,7 @@ in
     label = "%percentage%%";
     format = " <label>";
     format-padding = 2;
-    format-background = colors.shade4; 
+    format-background = colors.shade6; 
   };
 
   "module/cpu_ramp" = {
@@ -20,7 +20,7 @@ in
     # UI
     format = "<ramp-coreload>";
     format-padding = 2;
-    format-background = colors.shade5; 
+    format-background = colors.shade6; 
 
     # Ramp
     ramp-coreload-0 = "▁";

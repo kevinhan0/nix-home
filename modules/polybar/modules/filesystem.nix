@@ -10,10 +10,10 @@ in
     # UI
     label-mounted = " %used%";
     label-unmounted = " not mounted";
-    label-mounted-background = colors.shade3;
+    label-mounted-background = colors.shade6;
     label-mounted-padding = 2;
     label-unmounted-padding = 2;
-    label-unmounted-background = colors.shade3;
+    label-unmounted-background = colors.shade6;
     label-mounted-foreground = colors.fg;
     label-unmounted-foreground = colors.fg;
   };

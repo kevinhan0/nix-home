@@ -1,5 +1,6 @@
 {
-  bg = "#1F1F1F";
+  #bg = "#1F1F1F";
+  bg = "#90CAF9";
   fg = "#FFFFFF";
   acolor = "#FFFFFF";
   curgent = "#EF5350";
